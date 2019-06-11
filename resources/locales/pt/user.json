@@ -1,0 +1,8 @@
+{
+  "email.required": "O campo email é obrigatório",
+  "email.unique": "Já existe o email informado cadastrado",
+  "username.required": "O campo nome é obrigatório",
+  "username.unique": "Já existe o nome informado cadastrado",
+  "password.required": "O campo senha é obrigatório",
+  "password.confirmed": "A senha não foi confirmada corretamente"
+}
