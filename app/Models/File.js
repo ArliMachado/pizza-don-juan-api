@@ -5,6 +5,10 @@ const Model = use('Model')
 const Env = use('Env')
 
 class File extends Model {
+  static get hidden () {
+    return ['file', 'type', 'subtype', 'updated_at', 'created_at']
+  }
+
   products () {
     return this.belongsTo('App/Models/Product')
   }
