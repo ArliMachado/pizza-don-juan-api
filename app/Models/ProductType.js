@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class ProductType extends Model {
   static get hidden () {
-    return ['created_at', 'updated_at']
+    return ['created_at', 'updated_at', 'file_id']
   }
   product () {
     return this.belongsTo('App/Models/Product')

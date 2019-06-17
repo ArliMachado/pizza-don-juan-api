@@ -6,6 +6,7 @@ class ProductTypeController {
   async index ({ params }) {
     const types = await ProductType.query()
       .where('product_id', params.product_id)
+      .with('file')
       .fetch()
 
     return types
