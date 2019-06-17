@@ -1,0 +1,36 @@
+[
+  {
+    "title": "Pizzas",
+    "description": "Mais de 50 sabores de pizza em até 4 tamanhos diferentes de fome.",
+    "estimated_time": 30,
+    "file_id": 1
+  },
+
+  {
+    "title": "Massas",
+    "description": "10 tipos de massas com diferentes molhos para te satisfazer.",
+    "estimated_time": 25,
+    "file_id": 2
+  },
+
+  {
+    "title": "Calzones",
+    "description": "Calzones super recheados com mais de 50 sabores diferentes.",
+    "estimated_time": 15,
+    "file_id": 3
+  },
+
+  {
+    "title": "Bebidas não-alcóolicas",
+    "description": "Refrigerantes, sucos, chá gelado, energéticos e água.",
+    "estimated_time": 5,
+    "file_id": 4
+  },
+
+  {
+    "title": "Bebidas alcóolicas",
+    "description": "Cervejas artesanais, vinhos e destilados.",
+    "estimated_time": 5,
+    "file_id": 5
+  }
+]
