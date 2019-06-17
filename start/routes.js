@@ -11,4 +11,7 @@ Route.group(() => {
 
   Route.post('products', 'ProductController.store')
   Route.get('products', 'ProductController.index')
+
+  Route.resource('product.types', 'ProductTypeController')
+  Route.resource('product.types.sizes', 'ProductSizeController')
 }).middleware(['auth'])

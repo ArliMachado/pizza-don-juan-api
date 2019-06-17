@@ -13,6 +13,14 @@ class File extends Model {
     return this.belongsTo('App/Models/Product')
   }
 
+  productTypes () {
+    return this.belongsTo('App/Models/ProductType')
+  }
+
+  productSize () {
+    return this.belongsTo('App/Models/ProductSize')
+  }
+
   static get computed () {
     return ['url']
   }
