@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class ProductSize extends Model {
+  static get hidden () {
+    return ['created_at', 'updated_at', 'file_id']
+  }
   productType () {
     return this.belongsTo('App/Models/ProductType')
   }

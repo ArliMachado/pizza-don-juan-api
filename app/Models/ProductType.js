@@ -11,7 +11,7 @@ class ProductType extends Model {
     return this.belongsTo('App/Models/Product')
   }
 
-  sizes () {
+  productSize () {
     return this.hasMany('App/Models/ProductSize')
   }
 

@@ -14,7 +14,7 @@ class ProductSizeController {
   async index ({ params }) {
     const types = await Productsize.query()
       .where('product_type_id', params.types_id)
-      .with('product_types')
+      .with('file')
       .fetch()
 
     return types
