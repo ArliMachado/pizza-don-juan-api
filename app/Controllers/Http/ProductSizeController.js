@@ -15,6 +15,8 @@ class ProductSizeController {
     const types = await Productsize.query()
       .where('product_type_id', params.types_id)
       .with('file')
+      .with('productType')
+      .with('productType.file')
       .fetch()
 
     return types
