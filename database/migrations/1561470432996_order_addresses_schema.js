@@ -7,10 +7,17 @@ class OrderAddressSchema extends Schema {
   up () {
     this.create('order_addresses', table => {
       table.increments()
-      table.string('cep').notNulabble()
-      table.string('street').notNulabble()
-      table.decimal('number').notNulabble()
-      table.decimal('district').notNulabble()
+      table
+        .integer('order_id')
+        .unsigned()
+        .references('id')
+        .inTable('orders')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table.string('cep').notNullable()
+      table.string('street').notNullable()
+      table.decimal('number').notNullable()
+      table.string('district').notNullable()
       table.timestamps()
     })
   }

@@ -7,10 +7,18 @@ class OrderProductsSchema extends Schema {
   up () {
     this.create('order_products', table => {
       table.increments()
-      table.decimal('product_id')
+      table
+        .integer('order_id')
+        .unsigned()
+        .references('id')
+        .inTable('orders')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      // table.decimal('product_id')
       table.string('title').notNullable()
       table.string('size').notNullable()
       table.decimal('price').notNullable()
+      table.string('image').notNullable()
       table.timestamps()
     })
   }

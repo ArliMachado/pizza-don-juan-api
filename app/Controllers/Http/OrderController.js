@@ -1,5 +1,8 @@
 'use strict'
 
+const Database = use('Database')
+const Order = use('App/Models/Order')
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -18,18 +21,12 @@ class OrderController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-  }
-
-  /**
-   * Render a form to be used for creating a new order.
-   * GET orders/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+    const orders = await Order.query()
+      .with('user')
+      .with('address')
+      .with('products')
+      .fetch()
+    return orders
   }
 
   /**
@@ -40,7 +37,23 @@ class OrderController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request, auth }) {
+    const data = request.only(['observation'])
+    data.user_id = auth.user.id
+    const address = request.input('address')
+    const products = request.input('products')
+
+    const trx = await Database.beginTransaction()
+
+    const order = await Order.create(data, trx)
+
+    await order.address().create(address, trx)
+
+    await order.products().createMany(products, trx)
+
+    await trx.commit()
+
+    return order
   }
 
   /**
@@ -52,41 +65,14 @@ class OrderController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
-
-  /**
-   * Render a form to update an existing order.
-   * GET orders/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update order details.
-   * PUT or PATCH orders/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a order with id.
-   * DELETE orders/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+  async getByUser ({ request, auth }) {
+    const orders = await Order.query()
+      .where('user_id', auth.user.id)
+      .with('user')
+      .with('address')
+      .with('products')
+      .fetch()
+    return orders
   }
 }
 

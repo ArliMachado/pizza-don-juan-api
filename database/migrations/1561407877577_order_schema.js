@@ -5,8 +5,17 @@ const Schema = use('Schema')
 
 class OrderSchema extends Schema {
   up () {
-    this.create('orders', (table) => {
+    this.create('orders', table => {
       table.increments()
+      table.string('observation').notNullable()
+      table
+        .integer('user_id')
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+
       table.timestamps()
     })
   }
