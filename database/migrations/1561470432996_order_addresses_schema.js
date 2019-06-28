@@ -17,7 +17,7 @@ class OrderAddressSchema extends Schema {
       table.string('cep').notNullable()
       table.string('street').notNullable()
       table.decimal('number').notNullable()
-      table.string('district').notNullable()
+      table.string('city').notNullable()
       table.timestamps()
     })
   }
