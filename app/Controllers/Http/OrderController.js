@@ -38,7 +38,7 @@ class OrderController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const data = request.only(['observation'])
+    const data = request.only(['observation', 'total_value'])
     data.user_id = auth.user.id
     const address = request.input('address')
     const products = request.input('products')
