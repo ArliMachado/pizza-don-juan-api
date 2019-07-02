@@ -13,11 +13,10 @@ class SessionController {
       (origin === 'MOBILE' && user.type === 'ADMIN') ||
       (origin === 'BROWSER' && user.type === 'USER')
     ) {
-      return response
-        .status(401)
-        .send({ error: { message: 'Usuário não autorizado' } })
+      return response.status(401).send([{ message: 'Usuário não autorizado' }])
+    } else {
+      return { user, token }
     }
-    return token
   }
 }
 
