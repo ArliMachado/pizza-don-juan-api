@@ -14,9 +14,6 @@ class User extends Model {
     })
   }
 
-  /**
-   * Hide/Omit Fields From JSON Output
-   */
   static get hidden () {
     return ['password', 'created_at', 'updated_at']
   }
